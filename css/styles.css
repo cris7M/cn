@@ -94,3 +94,18 @@
             padding: 0.5rem 1rem;
             width: 100%;
         }
+        .oauth-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        .oauth-button img {
+            width: 20px;
+            height: 20px;
+        }
