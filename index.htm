@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Naman – India's First AI-Powered Tech Social Network</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow-sm py-4 relative"> <!-- Added 'relative' for mobile menu positioning -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-indigo-600">Code Naman</a>
+            
+            <!-- Desktop Navigation -->
+            <nav id="main-nav" class="hidden lg:block">
+                <ul class="flex space-x-4">
+                    <!-- Navigation links will be dynamically shown/hidden by JS -->
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="lg:hidden flex items-center space-x-4">
+                <button id="open-auth-modal-nav-mobile" class="bg-indigo-600 text-white font-bold py-1 px-4 rounded-full hover:bg-indigo-700 transition duration-300 ease-in-out">Connect</button>
+                <button id="mobile-menu-button" class="hamburger-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Content (Hidden by default, shown by JS) -->
+        <nav id="mobile-menu" class="hidden lg:hidden">
+            <ul class="flex">
+                <!-- Mobile navigation links will be dynamically shown/hidden by JS -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login/Register Modal (Hidden by default) -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content text-center">
+            <span class="close-button" id="close-auth-modal">&times;</span>
+
+            <!-- Login Form -->
+            <div id="login-form-container">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Welcome Back!</h2>
+                <p class="text-gray-600 mb-8">Login to access India's First AI-Powered Tech Social Network.</p>
+                <form id="login-form" class="space-y-6">
+                    <div>
+                        <input type="email" id="login-email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <input type="password" id="login-password" placeholder="Password" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                        Login
+                    </button>
+                </form>
+                <p class="mt-4 text-gray-600">New to Code Naman? <a href="#" id="show-register" class="text-indigo-600 hover:underline font-semibold">Register here</a></p>
+            </div>
+
+            <!-- Register Form (Hidden by default) -->
+            <div id="register-form-container" class="hidden">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Join Code Naman!</h2>
+                <p class="text-gray-600 mb-8">Create your account to unlock all features.</p>
+                <form id="register-form" class="space-y-6">
+                    <div>
+                        <input type="text" id="register-name" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <input type="email" id="register-email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <div>
+                        <input type="password" id="register-password" placeholder="Password" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-6 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out transform hover:scale-105">
+                        Register
+                    </button>
+                </form>
+                <p class="mt-4 text-gray-600">Already have an account? <a href="#" id="show-login" class="text-indigo-600 hover:underline font-semibold">Login here</a></p>
+            </div>
+
+            <div id="auth-message" class="mt-4 text-sm text-red-600 hidden"></div>
+        </div>
+    </div>
+
+    <!-- Public Marketing Content (Visible by default) -->
+    <div id="public-content">
+        <!-- Hero Section -->
+        <section class="gradient-bg text-white py-20 md:py-28 text-center rounded-b-xl shadow-lg">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Code Naman: <br class="sm:hidden"> India's First AI-Powered Tech Social Network
+                </h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">
+                    Connect, collaborate, hire, and grow together in a single unified platform.
+                </p>
+                <a href="#features" class="inline-block bg-white text-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105">
+                    Discover Features
+                </a>
+            </div>
+        </section>
+
+        <!-- What We're Building Section -->
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">
+                    🧠 What Are We Building?
+                </h2>
+                <div class="max-w-3xl mx-auto text-center text-gray-600 text-lg leading-relaxed">
+                    <p class="mb-4">
+                        Code Naman is not just another freelancing or job-hunting site — it’s a bold step toward building India’s first AI-powered tech social network where developers, recruiters, freelancers, and tech learners can connect, collaborate, hire, and grow together in a single unified platform.
+                    </p>
+                    <p>
+                        We're combining the best parts of platforms like LinkedIn, Upwork, and GitHub, but with a unique AI-first approach. Here’s what makes Code Naman different:
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features Section -->
+        <section id="features" class="py-16 md:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+                    🔍 Key Features We're Offering
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Feature 1: AI-Based Resume Analysis & Matching -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-indigo-500">🤖</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">AI-Based Resume Analysis & Matching</h3>
+                        <p class="text-gray-600">
+                            Upload your resume once, and our LLM-powered Resume RAG engine will automatically score, match, and recommend you to relevant job roles. Recruiters can upload 500+ resumes and instantly get the top 10 candidates ranked based on job description fit.
+                        </p>
+                    </div>
+
+                    <!-- Feature 2: Smart Freelancing With Escrow & Milestone Contracts -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-green-500">💰</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Smart Freelancing With Escrow & Milestone Contracts</h3>
+                        <p class="text-gray-600">
+                            Freelancers and clients can create milestone-based contracts, and funds are securely locked using wallet-based escrow, reducing disputes and payment issues. We offer transparency, lower fees, and real protection for both sides.
+                        </p>
+                    </div>
+
+                    <!-- Feature 3: Tech-Only Social Feed -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-blue-500">💬</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Tech-Only Social Feed</h3>
+                        <p class="text-gray-600">
+                            Like LinkedIn, but only for tech – users can post updates, code snippets, projects, AI experiments, or share insights. This removes clutter and makes Code Naman the go-to platform for serious tech minds.
+                        </p>
+                    </div>
+
+                   
+                     <!-- New Feature: Background Verification & Verified Badge -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-teal-500">✅</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Background Verification & Verified Badge</h3>
+                        <p class="text-gray-600">
+                            Users can opt for a background verification process to earn a "Verified" badge on their profile. This badge signifies a pre-verified status, **potentially eliminating the need for further background checks** by joining companies. Get verified in just 7 days!
+                        </p>
+                    </div>
+
+
+
+                    <!-- Feature 5: AI Interview Preparation -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-red-500">🎤</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">AI Interview Preparation</h3>
+                        <p class="text-gray-600">
+                            Smart interview question generator using LLMs. Mock interviews, real-time cheating detection, and evaluation — helping users crack top tech roles.
+                        </p>
+                    </div>
+
+                    <!-- Feature 6: Live Knowledge-Sharing Sessions -->
+                    <div class="feature-card bg-white p-8 rounded-lg shadow-md border border-gray-200 hover:border-indigo-400">
+                        <div class="text-5xl mb-4 text-yellow-500">💡</div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">Live Knowledge-Sharing Sessions</h3>
+                        <p class="text-gray-600">
+                            Weekly webinars, problem-solving sessions, and AMA events with experts. Soon will include earning opportunities for tech educators and mentors.
+                        </p>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="py-16 md:py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+                    🚀 How Code Naman Works
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-lg bg-indigo-50 shadow-sm">
+                        <div class="text-5xl mb-4 text-indigo-600">1️⃣</div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Join the Network</h3>
+                        <p class="text-gray-600">Create your profile, connect with tech professionals, and showcase your skills.</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-indigo-50 shadow-sm">
+                        <div class="text-5xl mb-4 text-indigo-600">2️⃣</div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Explore Opportunities</h3>
+                        <p class="text-gray-600">Find relevant jobs, freelance projects, and learning sessions tailored for you.</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-indigo-50 shadow-sm">
+                        <div class="text-5xl mb-4 text-indigo-600">3️⃣</div>
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Grow & Succeed</h3>
+                        <p class="text-gray-600">Leverage AI tools for hiring/interview prep and collaborate with the community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+                    ❓ Frequently Asked Questions
+                </h2>
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">What makes Code Naman different from LinkedIn?</h3>
+                        <p class="text-gray-600">Code Naman is exclusively for the tech community, offering an AI-first approach to hiring, freelancing, and knowledge sharing. Unlike general professional networks, our platform is tailored to the specific needs of developers, recruiters, and tech learners.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">How secure are the freelancing payments?</h3>
+                        <p class="text-gray-600">We use a secure wallet-based escrow system for all milestone-based contracts. Funds are held securely until milestones are approved, providing robust protection for both freelancers and clients against payment disputes.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Is there a fee to join Code Naman?</h3>
+                        <p class="text-gray-600">Joining Code Naman and creating a profile is free. We offer transparent and lower fees for freelancing transactions compared to many other platforms. Premium features and earning opportunities for educators will have separate pricing.</p>
+                    </div>
+                     <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">How does Background Verification work?</h3>
+                        <p class="text-gray-600">Users can opt for a paid background verification service to receive a "Verified" badge on their profile, increasing their credibility. The verification process is typically completed within 7 business days after submission of required documents. **This pre-verification aims to eliminate the need for redundant background checks by joining companies, saving time and effort.**</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">How does GitHub Integration help with verification?</h3>
+                        <p class="text-gray-600">Showcasing your open-source contributions and activity directly from GitHub provides real-world proof of your skills and work ethic. While not a full background check, this transparency significantly enhances your profile's credibility and can **streamline the initial vetting process for companies, potentially reducing some verification steps.**</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Uniqueness/Why Choose Us Section -->
+        <section id="uniqueness" class="py-16 md:py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-gray-800">
+                    ✨ How Code Naman Stands Out
+                </h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    No one else is offering this kind of intelligent filtering for tech hiring at scale in India yet. Most platforms like Fiverr or Upwork charge high commissions — we offer transparency, lower fees, and real protection for both sides.
+                </p>
+                <p class="text-lg text-gray-600 mb-6">
+                    Our tech-only social feed removes clutter and makes Code Naman the go-to platform for serious tech minds. The combination of AI-powered tools, secure freelancing, and a dedicated tech community creates a truly unique and powerful ecosystem.
+                </p>
+                <p class="text-lg text-gray-600 font-semibold">
+                    Code Naman is designed to be the definitive platform for tech professionals in India to connect, grow, and succeed.
+                </p>
+                <p class="text-xl text-indigo-700 font-bold mt-8">
+                    We hope you like what we're building!
+                </p>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="py-16 md:py-24 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+                    🆚 Code Naman vs. The Rest
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+                    <!-- Left Column: Traditional Platforms -->
+                    <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                        <h3 class="text-2xl font-bold text-center text-gray-700 mb-8">Traditional Platforms</h3>
+
+                        <div class="space-y-8">
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-red-50 border border-red-200">
+                                <div class="text-3xl text-red-500 flex-shrink-0">🚫</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Generic Social Feeds</h4>
+                                    <p class="text-gray-600 text-sm">Often cluttered with non-tech content, making it hard to find relevant discussions and connections.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-red-50 border border-red-200">
+                                <div class="text-3xl text-red-500 flex-shrink-0">📉</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">High Freelancing Commissions</h4>
+                                    <p class="text-gray-600 text-sm">Platforms like Upwork/Fiverr can charge significant fees, reducing freelancer earnings and increasing client costs.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-red-50 border border-red-200">
+                                <div class="text-3xl text-red-500 flex-shrink-0">🔍</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Basic Resume Matching</h4>
+                                    <p class="text-gray-600 text-sm">Relies on keyword matching or less sophisticated AI, leading to irrelevant job/candidate recommendations.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-red-50 border border-red-200">
+                                <div class="text-3xl text-red-500 flex-shrink-0">🧩</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Fragmented Tools</h4>
+                                    <p class="text-gray-600 text-sm">Users often need multiple platforms for networking, job searching, freelancing, and interview prep.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Code Naman -->
+                    <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                        <h3 class="text-2xl font-bold text-center text-indigo-700 mb-8">Code Naman</h3>
+
+                        <div class="space-y-8">
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-green-50 border border-green-200">
+                                <div class="text-3xl text-green-500 flex-shrink-0">✅</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Tech-Only Social Feed</h4>
+                                    <p class="text-gray-600 text-sm">A dedicated space for tech discussions, projects, and insights, ensuring highly relevant content.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-green-50 border border-green-200">
+                                <div class="text-3xl text-green-500 flex-shrink-0">📈</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Transparent, Lower Fees & Escrow</h4>
+                                    <p class="text-gray-600 text-sm">Fairer commission structures and secure wallet-based escrow for reliable and dispute-free transactions.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-green-50 border border-green-200">
+                                <div class="text-3xl text-green-500 flex-shrink-0">🧠</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">AI-Powered RAG Engine Matching</h4>
+                                    <p class="text-gray-600 text-sm">Advanced LLM-driven analysis for precise resume scoring and intelligent job/candidate recommendations.</p>
+                                </div>
+                            </div>
+
+                            <div class="comparison-item flex items-start gap-4 p-4 rounded-lg bg-green-50 border border-green-200">
+                                <div class="text-3xl text-green-500 flex-shrink-0">🔗</div>
+                                <div>
+                                    <h4 class="text-lg font-semibold text-gray-800">Unified AI-First Ecosystem</h4>
+                                    <p class="text-gray-600 text-sm">All essential tools for tech professionals integrated into one smart, seamless platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Overview Section -->
+        <section id="market" class="py-16 md:py-24 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-gray-800">
+                    📊 Market Opportunity in India
+                </h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    India boasts one of the world's largest and fastest-growing tech talent pools. With millions of developers, IT professionals, and aspiring tech learners, the demand for specialized platforms that cater to their unique needs is immense.
+                </p>
+                <p class="text-lg text-gray-600 mb-6">
+                    The freelancing market is booming, and companies are increasingly looking for skilled tech talent on a project basis. However, existing solutions often fall short in providing intelligent matching, fair compensation structures, and a dedicated community for tech professionals.
+                </p>
+                <p class="text-lg text-gray-600 font-semibold">
+                    Code Naman is uniquely positioned to capture this significant market by offering an integrated, AI-driven platform that addresses the specific challenges and opportunities within India's dynamic tech landscape. We aim to be the go-to hub for tech talent and hiring in the country.
+                </p>
+            </div>
+        </section>
+
+        <!-- Meet the Founder Section -->
+        <section id="founder" class="py-16 md:py-24 bg-gray-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-10 text-gray-800">
+                    👨‍💻 Meet the Founder
+                </h2>
+                <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200 mx-auto max-w-2xl">
+                    <p class="text-lg text-gray-700 mb-4">
+                        Code Naman is being built by a dedicated developer who brings over a **decade of experience working in multiple MNCs**.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-4">
+                        Having engaged in **extensive freelancing projects**, the founder possesses a deep, firsthand understanding of the real pain points faced by both freelancers and those seeking to hire tech talent.
+                    </p>
+                    <p class="text-lg text-gray-700 font-semibold text-indigo-600">
+                        This unique blend of corporate and freelance experience is the driving force behind creating a platform that truly solves real-world challenges for the tech community.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section id="call-to-action" class="gradient-bg text-white py-20 text-center rounded-t-xl shadow-lg mt-12">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Join the Tech Revolution?</h2>
+                <p class="text-lg md:text-xl mb-8 opacity-90">
+                    Sign up for Code Naman today and transform your tech career!
+                </p>
+                <button id="open-register-modal-cta" class="inline-block bg-white text-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 ease-in-out transform hover:scale-105">
+                    Connect Now
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8 text-center rounded-b-xl shadow-inner">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <p>&copy; 2025 Code Naman. All rights reserved.</p>
+                <p class="text-sm mt-2">Building India's AI-Powered Tech Social Network.</p>
+            </div>
+        </footer>
+    </div> <!-- End of public-content -->
+
+    <!-- Tech Home Page (Hidden by default) -->
+    <div id="tech-home-page" class="hidden min-h-screen flex flex-col items-center justify-center bg-indigo-50 text-gray-800 p-8">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-indigo-700 mb-6 text-center">
+            Welcome to Your Tech Home Page!
+        </h2>
+        <p class="text-lg md:text-xl text-center max-w-2xl mb-8">
+            This is where the magic happens. Connect with peers, find projects, learn, and grow.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-3">Your Personalized Feed</h3>
+                <p class="text-gray-600">See the latest tech updates, code snippets, and discussions tailored for you.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-3">Find Freelance Gigs</h3>
+                <p class="text-gray-600">Explore smart freelancing opportunities with secure escrow.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-3">AI Interview Practice</h3>
+                <p class="text-gray-600">Hone your skills with our intelligent interview preparation tools.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                <h3 class="text-xl font-semibold text-indigo-600 mb-3">Knowledge Hub</h3>
+                <p class="text-gray-600">Join live sessions, webinars, and learn from industry experts.</p>
+            </div>
+        </div>
+        <p class="mt-12 text-sm text-gray-500">
+            *This is a simulated tech home page. In a full application, this would be your dynamic social network dashboard.*
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const publicContent = document.getElementById('public-content');
+            const techHomePage = document.getElementById('tech-home-page');
+            const authModal = document.getElementById('auth-modal');
+            const loginFormContainer = document.getElementById('login-form-container');
+            const registerFormContainer = document.getElementById('register-form-container');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const authMessage = document.getElementById('auth-message');
+            const mainNav = document.getElementById('main-nav'); // Reference the nav container
+            const desktopNavUl = mainNav.querySelector('ul'); // The UL inside the desktop nav
+            const mobileMenu = document.getElementById('mobile-menu'); // The mobile menu container
+            const mobileMenuUl = mobileMenu.querySelector('ul'); // The UL inside the mobile menu
+            
+            const showRegisterLink = document.getElementById('show-register');
+            const showLoginLink = document.getElementById('show-login');
+            const openRegisterModalCta = document.getElementById('open-register-modal-cta');
+            const closeModalBtn = document.getElementById('close-auth-modal');
+            const mobileMenuButton = document.getElementById('mobile-menu-button'); // Hamburger button
+            const openAuthModalNavMobile = document.getElementById('open-auth-modal-nav-mobile'); // Mobile Connect button
+
+            // Function to update navigation based on login status
+            function updateNavigation(isLoggedIn) {
+                // Clear both desktop and mobile navs
+                desktopNavUl.innerHTML = '';
+                mobileMenuUl.innerHTML = '';
+
+                if (isLoggedIn) {
+                    // Desktop Nav (logged in)
+                    desktopNavUl.innerHTML = `
+                        <li><a href="#" id="nav-tech-home-desktop" class="text-gray-600 hover:text-indigo-600 font-medium">Tech Home</a></li>
+                        <li><button id="logout-button-desktop" class="bg-red-500 text-white font-bold py-1 px-4 rounded-full hover:bg-red-600 transition duration-300 ease-in-out">Logout</button></li>
+                    `;
+                    document.getElementById('logout-button-desktop').addEventListener('click', handleLogout);
+                    document.getElementById('nav-tech-home-desktop').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        publicContent.classList.add('hidden');
+                        techHomePage.classList.remove('hidden');
+                        techHomePage.scrollIntoView({ behavior: 'smooth' });
+                    });
+
+                    // Mobile Nav (logged in)
+                    mobileMenuUl.innerHTML = `
+                        <li><a href="#" id="nav-tech-home-mobile" class="text-gray-600 hover:text-indigo-600 font-medium">Tech Home</a></li>
+                        <li><button id="logout-button-mobile" class="bg-red-500 text-white font-bold py-1 px-4 rounded-full hover:bg-red-600 transition duration-300 ease-in-out">Logout</button></li>
+                    `;
+                    document.getElementById('logout-button-mobile').addEventListener('click', handleLogout);
+                    document.getElementById('nav-tech-home-mobile').addEventListener('click', (e) => {
+                        e.preventDefault();
+                        publicContent.classList.add('hidden');
+                        techHomePage.classList.remove('hidden');
+                        techHomePage.scrollIntoView({ behavior: 'smooth' });
+                        mobileMenu.classList.add('hidden'); // Close mobile menu after click
+                    });
+
+                    // Hide mobile Connect button if logged in
+                    openAuthModalNavMobile.classList.add('hidden');
+
+                } else {
+                    // Desktop Nav (logged out - public links + Connect button)
+                    desktopNavUl.innerHTML = `
+                        <li><a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium">About</a></li>
+                        <li><a href="#features" class="text-gray-600 hover:text-indigo-600 font-medium">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-600 hover:text-indigo-600 font-medium">How It Works</a></li>
+                        <li><a href="#faq" class="text-gray-600 hover:text-indigo-600 font-medium">FAQ</a></li>
+                        <li><a href="#uniqueness" class="text-gray-600 hover:text-indigo-600 font-medium">Uniqueness</a></li>
+                        <li><a href="#comparison" class="text-gray-600 hover:text-indigo-600 font-medium">Comparison</a></li>
+                        <li><a href="#market" class="text-gray-600 hover:text-indigo-600 font-medium">Market</a></li>
+                        <li><a href="#founder" class="text-gray-600 hover:text-indigo-600 font-medium">Founder</a></li>
+                        <li><button id="open-auth-modal-nav-desktop" class="bg-indigo-600 text-white font-bold py-1 px-4 rounded-full hover:bg-indigo-700 transition duration-300 ease-in-out">Connect</button></li>
+                    `;
+                    document.getElementById('open-auth-modal-nav-desktop').addEventListener('click', () => {
+                        authModal.classList.remove('hidden');
+                        loginFormContainer.classList.remove('hidden');
+                        registerFormContainer.classList.add('hidden');
+                        authMessage.classList.add('hidden');
+                        loginForm.reset();
+                        registerForm.reset();
+                    });
+
+                    // Mobile Nav (logged out - public links)
+                    mobileMenuUl.innerHTML = `
+                        <li><a href="#about" class="text-gray-600 hover:text-indigo-600 font-medium">About</a></li>
+                        <li><a href="#features" class="text-gray-600 hover:text-indigo-600 font-medium">Features</a></li>
+                        <li><a href="#how-it-works" class="text-gray-600 hover:text-indigo-600 font-medium">How It Works</a></li>
+                        <li><a href="#faq" class="text-gray-600 hover:text-indigo-600 font-medium">FAQ</a></li>
+                        <li><a href="#uniqueness" class="text-gray-600 hover:text-indigo-600 font-medium">Uniqueness</a></li>
+                        <li><a href="#comparison" class="text-gray-600 hover:text-indigo-600 font-medium">Comparison</a></li>
+                        <li><a href="#market" class="text-gray-600 hover:text-indigo-600 font-medium">Market</a></li>
+                        <li><a href="#founder" class="text-gray-600 hover:text-indigo-600 font-medium">Founder</a></li>
+                    `;
+                    // Show mobile Connect button if logged out
+                    openAuthModalNavMobile.classList.remove('hidden');
+
+                    // Attach smooth scroll listeners to ALL public navigation links (desktop and mobile)
+                    // This needs to be done after innerHTML is set
+                    document.querySelectorAll('#main-nav a[href^="#"], #mobile-menu a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            const targetId = this.getAttribute('href');
+                            const targetElement = document.querySelector(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                            mobileMenu.classList.add('hidden'); // Close mobile menu after click
+                        });
+                    });
+                }
+            }
+
+            // Toggle Mobile Menu
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Mobile Connect button directly opens auth modal
+            openAuthModalNavMobile.addEventListener('click', () => {
+                authModal.classList.remove('hidden');
+                loginFormContainer.classList.remove('hidden');
+                registerFormContainer.classList.add('hidden');
+                authMessage.classList.add('hidden');
+                loginForm.reset();
+                registerForm.reset();
+                mobileMenu.classList.add('hidden'); // Close mobile menu if open
+            });
+
+            // Show Register Form in Modal
+            showRegisterLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginFormContainer.classList.add('hidden');
+                registerFormContainer.classList.remove('hidden');
+                authMessage.classList.add('hidden');
+                loginForm.reset();
+            });
+
+            // Show Login Form in Modal
+            showLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                registerFormContainer.classList.add('hidden');
+                loginFormContainer.classList.remove('hidden');
+                authMessage.classList.add('hidden');
+                registerForm.reset();
+            });
+
+            // Open Auth Modal from CTA button
+            openRegisterModalCta.addEventListener('click', () => {
+                authModal.classList.remove('hidden');
+                registerFormContainer.classList.remove('hidden');
+                loginFormContainer.classList.add('hidden');
+                authMessage.classList.add('hidden');
+                loginForm.reset();
+                registerForm.reset();
+            });
+
+            // Close Auth Modal
+            closeModalBtn.addEventListener('click', () => {
+                authModal.classList.add('hidden');
+                authMessage.classList.add('hidden');
+                loginForm.reset();
+                registerForm.reset();
+            });
+
+            // Simulate Login
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                if (email && password) {
+                    authModal.classList.add('hidden');
+                    publicContent.classList.add('hidden');
+                    techHomePage.classList.remove('hidden');
+                    authMessage.classList.add('hidden');
+                    updateNavigation(true);
+                } else {
+                    authMessage.textContent = 'Please enter both email and password for login.';
+                    authMessage.classList.remove('hidden');
+                }
+            });
+
+            // Simulate Registration
+            registerForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+
+                if (name && email && password) {
+                    authModal.classList.add('hidden');
+                    publicContent.classList.add('hidden');
+                    techHomePage.classList.remove('hidden');
+                    authMessage.classList.add('hidden');
+                    updateNavigation(true);
+                    alert('Registration successful! Welcome to Code Naman, ' + name + '!');
+                } else {
+                    authMessage.textContent = 'Please fill in all fields for registration.';
+                    authMessage.classList.remove('hidden');
+                }
+            });
+
+            // Simulate Logout
+            function handleLogout() {
+                techHomePage.classList.add('hidden');
+                publicContent.classList.remove('hidden');
+                loginForm.reset();
+                registerForm.reset();
+                authMessage.classList.add('hidden');
+                updateNavigation(false);
+                publicContent.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Initial state: ensure public content is visible and navigation is correct
+            updateNavigation(false);
+
+            // JavaScript for scroll-triggered animations (only applies to public-content)
+            const comparisonItems = document.querySelectorAll('.comparison-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Optional: remove 'is-visible' if you want the animation to replay on scroll up
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.3 // Trigger when 30% of the item is visible
+            });
+
+            comparisonItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

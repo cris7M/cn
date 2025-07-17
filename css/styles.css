@@ -1,0 +1,96 @@
+ body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            color: #334155; /* Darker gray text */
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Indigo to Violet gradient */
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        /* Animation for comparison cards */
+        .comparison-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .comparison-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Modal specific styles */
+        .modal {
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+        /* Hamburger icon styling */
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .hamburger-icon span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #334155; /* Dark gray for lines */
+            border-radius: 2px;
+        }
+        /* Mobile menu specific styles */
+        #mobile-menu {
+            position: absolute;
+            top: 100%; /* Position below the header */
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            z-index: 999;
+        }
+        #mobile-menu ul {
+            flex-direction: column; /* Stack links vertically */
+            align-items: center;
+            gap: 0.75rem; /* Space between vertical links */
+        }
+        #mobile-menu ul li {
+            width: 100%;
+            text-align: center;
+        }
+        #mobile-menu ul li a, #mobile-menu ul li button {
+            display: block;
+            padding: 0.5rem 1rem;
+            width: 100%;
+        }
